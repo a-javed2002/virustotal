@@ -1,0 +1,10 @@
+<div class="form-group">
+    <label for="patchStatus">patchStatus:</label>
+    <input type="text" class="form-control" id="patchStatus" placeholder="Enter patchStatus"
+        name="patchStatus" required>
+    <% if (errors && errors.find(e=> e.param === 'patchStatus')) { %>
+        <p class="text-danger">
+            <%= errors.find(e=> e.param === 'patchStatus').msg %>
+        </p>
+        <% } %>
+</div>

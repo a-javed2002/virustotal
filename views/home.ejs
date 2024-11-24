@@ -1,0 +1,143 @@
+<form action="/" method="post">
+  <div style="display: flex;">
+    <input type="text" id="search-bar" placeholder="Search..." style="color: black;" name="file_hash" value="<%= input %>">
+    <button type="submit" id="search-button" style="padding: 10px 30px 10px 30px;font-weight: bolder;">Search</button>
+  </div>
+</form>
+<br>
+<br>
+<br>
+<% if(data==true){ %>
+  <div class="tab" style="color: black;">
+    <button class="tablinks" onclick="openCity(event, 'tab-1')">Malware</button>
+    <button class="tablinks" onclick="openCity(event, 'tab-2')">Incident Report</button>
+    <button class="tablinks" onclick="openCity(event, 'tab-3')">Indicators Of Compromise</button>
+    <button class="tablinks" onclick="openCity(event, 'tab-4')">Malicious Behavior</button>
+    <button class="tablinks" onclick="openCity(event, 'tab-5')">Mitigation Strategy</button>
+    <button class="tablinks" onclick="openCity(event, 'tab-6')">Threat Actor</button>
+    <button class="tablinks" onclick="openCity(event, 'tab-7')">Vulnerability Exploited</button>
+  </div>
+
+  <div id="tab-1" class="tabcontent" style="display: block;color: white;font-size: 20px;">
+    <p><strong>File Hash:</strong>
+      <%= malware.fileHash %>
+    </p>
+    <p><strong>File Size:</strong>
+      <%= malware.fileSize %>
+    </p>
+    <p><strong>File Type:</strong>
+      <%= malware.fileType %>
+    </p>
+    <p><strong>Malware Category:</strong>
+      <%= malware.malwareCategory %>
+    </p>
+  </div>
+
+  <div id="tab-2" class="tabcontent" style="color: white;font-size: 20px;">
+    <p><strong>Incident Date/Time:</strong>
+      <%= malware.dateTime %>
+  </p>
+  <p><strong>Incident Description:</strong>
+      <%= malware.descriptionOfIncident %>
+  </p>
+  <p><strong>Threat Level:</strong>
+      <%= malware.threatLevel %>
+  </p>
+  </div>
+
+  <div id="tab-3" class="tabcontent" style="color: white;font-size: 20px;">
+    <p><strong>IP Address:</strong>
+      <%= malware.ipAddress %>
+  </p>
+  <p><strong>Domain Name:</strong>
+      <%= malware.domainName %>
+  </p>
+  <p><strong>Url:</strong>
+      <%= malware.url %>
+  </p>
+  <p><strong>Registry Key:</strong>
+      <%= malware.registryKey %>
+  </p>
+  <p><strong>File Path:</strong>
+      <%= malware.filePath %>
+  </p>
+  </div>
+
+  <div id="tab-4" class="tabcontent" style="color: white;font-size: 20px;">
+    <p><strong>Behavior Description:</strong>
+      <%= malware.behaviorDescription %>
+  </p>
+  <p><strong>System Calls/API Functions:</strong>
+      <%= malware.systemCallsOrAPIFunctions %>
+  </p>
+  <p><strong>Registry Modifications:</strong>
+      <%= malware.registryModifications %>
+  </p>
+  </div>
+
+  <div id="tab-5" class="tabcontent" style="color: white;font-size: 20px;">
+    <p><strong>YARA Rules:</strong>
+      <%= malware.YARARules %>
+  </p>
+  <p><strong>Patch Information:</strong>
+      <%= malware.patchInformation %>
+  </p>
+  </div>
+
+  <div id="tab-6" class="tabcontent" style="color: white;font-size: 20px;">
+    <p><strong>Actor Name/Alias:</strong>
+      <%= malware.actorNameOrAlias %>
+  </p>
+  <p><strong>Motivation:</strong>
+      <%= malware.motivation %>
+  </p>
+  <p><strong>TTPs:</strong>
+      <%= malware.TTPs %>
+  </p>
+  <p><strong>knownAffiliations:</strong>
+      <%= malware.knownAffiliations %>
+  </p>
+  </div>
+
+  <div id="tab-7" class="tabcontent" style="color: white;font-size: 20px;">
+    <p><strong>Vulnerability Type:</strong>
+      <%= malware.vulnerabilityType %>
+    </p>
+    <p><strong>Affected Software/Component:</strong>
+      <%= malware.affectedSoftwareOrSystemComponent %>
+    </p>
+    <p><strong>CVE_ID:</strong>
+      <%= malware.CVE_ID %>
+    </p>
+    <p><strong>patch Status:</strong>
+      <%= malware.patchStatus %>
+    </p>
+  </div>
+
+  <script>
+    // Simulate a click on the first tab when the page loads
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('.tablinks').click();
+    });
+
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
+  <% } else if(msg!="" ){ %>
+    <center>
+      <p style="color: white;">
+        <%= msg%>
+      </p>
+    </center>
+    <%}%>

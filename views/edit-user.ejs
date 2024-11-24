@@ -1,0 +1,64 @@
+<div class="container">
+    <h2>Edit User</h2>
+    <form action="/update-user/<%= user.user_id %>" method="post">
+        <!-- Include user id in the form action -->
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter name" required name="name" value="<%= user.user_name %>" required>
+            <!-- Populate with existing user name -->
+            <% if (errors && errors.find(e => e.param === 'name')) { %>
+                <p class="text-danger">
+                    <%= errors.find(e => e.param === 'name').msg %>
+                </p>
+            <% } %>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" required name="email" value="<%= user.user_email %>" required>
+            <!-- Populate with existing user email -->
+            <% if (errors && errors.find(e => e.param === 'email')) { %>
+                <p class="text-danger">
+                    <%= errors.find(e => e.param === 'email').msg %>
+                </p>
+            <% } %>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" value="<%= user.user_password %>" name="password" required>
+            <!-- Password field for updating, you may want to add logic for updating password -->
+            <% if (errors && errors.find(e => e.param === 'password')) { %>
+                <p class="text-danger">
+                    <%= errors.find(e => e.param === 'password').msg %>
+                </p>
+            <% } %>
+        </div>
+
+        <div class="form-group">
+            <label for="role">Role:</label><br>
+            Admin &nbsp; <input type="radio" class="" name="role" value="1" <%= user.role_id_fk === 1 ? 'checked' : '' %>><br>
+            User &nbsp; <input type="radio" class="" name="role" value="2" <%= user.role_id_fk === 2 ? 'checked' : '' %>><br>
+            <!-- Populate with existing user role -->
+            <% if (errors && errors.find(e => e.param === 'role')) { %>
+                <p class="text-danger">
+                    <%= errors.find(e => e.param === 'role').msg %>
+                </p>
+            <% } %>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status:</label><br>
+            Active &nbsp; <input type="radio" class="" name="status" value="Active" <%= user.user_status === 'Active' ? 'checked' : '' %>><br>
+            Inactive &nbsp; <input type="radio" class="" name="status" value="Inactive" <%= user.user_status === 'Inactive' ? 'checked' : '' %>><br>
+            <% if (errors && errors.find(e=> e.param === 'status')) { %>
+                <p class="text-danger">
+                    <%= errors.find(e=> e.param === 'status').msg %>
+                </p>
+            <% } %>
+        </div>
+
+        <button type="submit" class="btn btn-default">Update</button>
+    </form>
+</div>
